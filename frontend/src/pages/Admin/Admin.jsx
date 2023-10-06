@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Admin.css";
+import { Chart } from "react-google-charts";
 import {
     Stat,
     StatLabel,
@@ -7,9 +8,36 @@ import {
     StatHelpText,
     StatArrow,
     StatGroup,
-    Button,
+    Button, 
+    ButtonGroup
   } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+
+//charts
+
+// export const data = [
+//     ["Task", "Hours per Day"],
+//     ["Work", 11],
+//     ["Eat", 2],
+//     ["Commute", 2],
+//     ["Watch TV", 2],
+//     ["Sleep", 7],
+//   ];
+  
+//   export const options = {
+//     title: "My Daily Activities",
+//   };
+
+//put in return 
+{/* <div className='chart'>
+    <Chart
+      chartType="PieChart"
+      data={data}
+      options={options}
+      width={"100%"}
+      height={"400px"}
+    />
+    </div> */}
 
 function Admin() {
     const toast = useToast()
@@ -29,24 +57,7 @@ function Admin() {
   return (
 <div>
     <div className='navbar'>
-        {/* <Button
-        onClick={() =>
-            toast({
-            position: 'top',
-            title: 'Account created.',
-            description: "We've created your account for you.",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-            containerStyle: {
-                width: '800px',
-                maxWidth: '100%',
-              },
-            })
-        }
-        >
-        Show Toast
-        </Button> */}
+       
     </div>
     <div className='fabricate'>
         <StatGroup>
@@ -87,9 +98,12 @@ function Admin() {
             </Stat>
         </StatGroup>
     </div>
-    <div className='map'>
-        <img src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/w_2560%2Cc_limit/GoogleMapTA.jpg" alt="" className='center'/>
+    <div className='center'>
+        <img src="https://itjunkies.in/assets/images/blogs/map.webp" alt=""/>
     </div>
+
+    <Button colorScheme='blue'>Button</Button>
+    
 </div>
   )
 }
