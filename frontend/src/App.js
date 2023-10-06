@@ -1,15 +1,11 @@
-import './App.css'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Map from './pages/map';
+import { useLoadScript } from "@react-google-maps/api";
+import Map from "./pages/Map";
+// import "./styles.css";
 
-function App() {
-  return(<>
-  <Router>
-    <Routes>
-      <Route path="/map" element={<Map/>} />
-     </Routes>
-  </Router>
-    </>)
+export default function App() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4" // Add your API key
+  });
+
+  return isLoaded ? <Map /> : null;
 }
-
-export default App
