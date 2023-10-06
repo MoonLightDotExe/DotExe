@@ -5,6 +5,7 @@ import { useLoadScript } from '@react-google-maps/api'
 import './App.css'
 import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
 import MapComp from './pages/MapComp'
+import Home from './pages/Home'
 
 function App() {
   const { isLoaded } = useLoadScript({
@@ -28,6 +29,10 @@ function App() {
             path='/map'
             // Component={MapComp}
             element={<MapComp />}
+          />
+          <Route
+            path='/home'
+            element={<Home/>}
           />
         </Routes>
       </Router>
