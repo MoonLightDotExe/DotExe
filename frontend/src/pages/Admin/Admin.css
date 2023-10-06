@@ -8,11 +8,18 @@
 }
 
 .center {
-    height: 20vh;
+    height: 78vh;
     width: 90vw;
     padding: 3vh;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+.button {
+    display: flex;
+    justify-content: end;
+    margin-right: 2vw;
+    padding: 1vh;
 }

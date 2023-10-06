@@ -102,7 +102,9 @@ function Admin() {
         <img src="https://itjunkies.in/assets/images/blogs/map.webp" alt=""/>
     </div>
 
-    <Button colorScheme='blue'>Button</Button>
+    <div className='button'>
+    <Button colorScheme='blue' size='md'>Report</Button>
+    </div>
     
 </div>
   )
