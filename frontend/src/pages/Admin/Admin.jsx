@@ -1,5 +1,6 @@
 import React from 'react'
 import './Admin.css'
+import { Chart } from 'react-google-charts'
 import {
   Stat,
   StatLabel,
@@ -8,8 +9,32 @@ import {
   StatArrow,
   StatGroup,
   Button,
+  ButtonGroup,
 } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+
+const data = [
+  {
+    head: 'head1',
+    addr: 'address1',
+    img: 'img1',
+  },
+  {
+    head: 'head2',
+    addr: 'address2',
+    img: 'img2',
+  },
+  {
+    head: 'head3',
+    addr: 'address3',
+    img: 'img3',
+  },
+  {
+    head: 'head4',
+    addr: 'address4',
+    img: 'img4',
+  },
+]
 
 //charts
 

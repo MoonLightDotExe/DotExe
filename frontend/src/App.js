@@ -1,28 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Admin from './pages/Admin/Admin'
+import { useLoadScript } from "@react-google-maps/api";
+import Map from "./pages/Map";
+// import "./styles.css";
 
-import './App.css'
-import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
+export default function App() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4" // Add your API key
+  });
 
-function App() {
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route
-            path='/admin'
-            Component={Admin}
-            element={<Admin />}
-          />
-          <Route
-            path='/ack'
-            Component={Acknowledgement}
-            element={<Acknowledgement />}
-          />
-        </Routes>
-      </Router>
-    </>
-  )
+  return isLoaded ? <Map /> : null;
 }
-
-export default App
