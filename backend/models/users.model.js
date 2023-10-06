@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     lat: {
       type: Number,
     },
-    long: {
+    lng: {
       type: Number,
     },
   },

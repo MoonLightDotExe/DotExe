@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Admin from './pages/Admin/Admin'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Admin from './pages/Admin/Admin';
 
-import './App.css'
+import './App.css';
 import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
 
 function App() {
