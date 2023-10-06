@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Admin.css";
 import { Chart } from "react-google-charts";
+import HCard from '../../components/Card/HCard';
 import {
     Stat,
     StatLabel,
@@ -9,9 +10,31 @@ import {
     StatArrow,
     StatGroup,
     Button, 
-    ButtonGroup
   } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+
+const data = [
+    {
+        head: 'head1',
+        addr:'address1',
+        img:'img1',
+    },
+    {
+        head: 'head2',
+        addr:'address2',
+        img:'img2',
+    },
+    {
+        head: 'head3',
+        addr:'address3',
+        img:'img3',
+    },
+    {
+        head: 'head4',
+        addr:'address4',
+        img:'img4',
+    }
+]
 
 //charts
 
@@ -56,10 +79,10 @@ function Admin() {
 
   return (
 <div>
-    <div className='navbar'>
+    <div className='admin_navbar'>
        
     </div>
-    <div className='fabricate'>
+    <div className='admin_fabricate'>
         <StatGroup>
             <Stat>
                 <StatLabel>Available Hospital Beds</StatLabel>
@@ -98,12 +121,22 @@ function Admin() {
             </Stat>
         </StatGroup>
     </div>
-    <div className='center'>
+    <div className='admin_center'>
         <img src="https://itjunkies.in/assets/images/blogs/map.webp" alt=""/>
     </div>
 
-    <div className='button'>
+    <div className='admin_button'>
     <Button colorScheme='blue' size='md'>Report</Button>
+    </div>
+
+    <div>
+      {data.map((data) => {
+        return(
+            <div className='admin_use'>
+            <HCard head={data.head} addr={data.addr} img={data.img}/>
+            </div>
+        )
+        })}
     </div>
     
 </div>
