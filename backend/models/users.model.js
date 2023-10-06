@@ -5,6 +5,14 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Please Enter your name'],
   },
+  email: {
+    type: String,
+    required: [true, 'Please Enter your email'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Please Enter your password'],
+  },
   location: {
     lat: {
       type: Number,
