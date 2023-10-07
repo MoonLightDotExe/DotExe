@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Admin from './pages/Admin/Admin'
 import { useLoadScript } from '@react-google-maps/api'
+import { useContext } from 'react'
+import authContext from './context/authContext'
 
 import './App.css'
 import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
