@@ -16,7 +16,7 @@ app.use('/api/test/', testRoutes)
 
 app.use('/api/', reportHandlerRoutes)
 
-app.use('/api/', authRoutes)
+app.use('/api/users/', authRoutes)
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)

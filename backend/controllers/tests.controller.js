@@ -5,9 +5,8 @@ const Users = require('../models/users.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-
 const registerController = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, password, address } = req.body
 
   if (!email || !password || !name) {
     res.status(400)
@@ -21,7 +20,12 @@ const registerController = asyncHandler(async (req, res) => {
   } else {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
-    const user = await Users.create({ name, email, password: hashedPassword })
+    const user = await Users.create({
+      name,
+      email,
+      password: hashedPassword,
+      address,
+    })
     res.status(201).json({
       id: user._id,
       name: user.name,
@@ -32,14 +36,25 @@ const registerController = asyncHandler(async (req, res) => {
   }
 })
 
-
 const loginController = asyncHandler(async (req, res) => {
   const { email, password } = req.body
   const userExists = await Users.findOne({ email })
 
-  if (userExists && (await bcrypt.compare(password, userExists.password))) {
+  if (
+    email === 'admin@test.com' &&
+    (await bcrypt.compare(password, userExists.password))
+  ) {
+    res.status(200).json({
+      success: true,
+      isAdmin: true,
+    })
+  } else if (
+    userExists &&
+    (await bcrypt.compare(password, userExists.password))
+  ) {
     res.status(201).json({
       id: userExists._id,
+      isAdmin: false,
       name: userExists.name,
       email: userExists.email,
       password: userExists.password,
@@ -57,7 +72,6 @@ const generateToken = (id) => {
     expiresIn: '30d',
   })
 }
-
 
 const addService = asyncHandler(async (req, res) => {
   try {
