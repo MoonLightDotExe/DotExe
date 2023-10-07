@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Admin from './pages/Admin/Admin'
 import { useLoadScript } from '@react-google-maps/api'
+import { useContext } from 'react';
+import authContext from './context/authContext';
 
 import './App.css';
 import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
@@ -15,9 +17,7 @@ function App() {
     setIsAdmin,
     registerUser,
     loginUser, } = useContext(authContext)
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4', // Add your API key
-  })
+    
 
 
 
@@ -25,7 +25,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          {isAdmin && <Route
+         <Route
             path='/admin'
             Component={Admin}
             element={<Admin />}
@@ -39,10 +39,6 @@ function App() {
             path='/map'
             // Component={MapComp}
             element={<MapComp />}
-          />
-          <Route
-            path='/home'
-            element={<Home />}
           />
         </Routes>
       </Router>
