@@ -3,6 +3,7 @@ const connectDB = require('./config/db.config')
 const testRoutes = require('./routes/tests.route')
 const authRoutes = require('./routes/authRoutes')
 const reportHandlerRoutes = require('./routes/reportHandler.route')
+const cors = require('cors')
 
 const PORT = process.env.PORT || 5000
 
@@ -11,6 +12,8 @@ const app = express()
 connectDB()
 
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cors())
 
 app.use('/api/test/', testRoutes)
 

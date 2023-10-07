@@ -1,7 +1,8 @@
 import React from 'react'
-import './Admin.css';
-import { Chart } from 'react-google-charts';
-import authContext from '../../context/authContext.js';
+import './Admin.css'
+import { Chart } from 'react-google-charts'
+import authContext from '../../context/authContext.js'
+import HCard from '../../components/Card/HCard.jsx'
 
 import {
   Stat,
@@ -67,8 +68,6 @@ const data = [
 }
 
 function Admin() {
-
-
   const toast = useToast()
   setTimeout(() => {
     toast({
@@ -136,18 +135,20 @@ function Admin() {
 
       <Button colorScheme='blue'>Button</Button>
 
-       <div>
-      {data.map((data) => {
-        return(
+      <div>
+        {data.map((data) => {
+          return (
             <div className='admin_use'>
-            <HCard head={data.head} addr={data.addr} img={data.img}/>
+              <HCard
+                head={data.head}
+                addr={data.addr}
+                img={data.img}
+              />
             </div>
-        )
+          )
         })}
+      </div>
     </div>
-
-    </div>
-    
   )
 }
 

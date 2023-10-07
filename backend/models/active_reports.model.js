@@ -13,10 +13,6 @@ const reportsSchema = mongoose.Schema({
       type: Number,
     },
   },
-  address: {
-    type: String,
-    required: [true, 'Please Enter your address'],
-  },
   nearby_services: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'ServicesModel',

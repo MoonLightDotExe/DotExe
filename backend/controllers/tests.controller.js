@@ -101,4 +101,51 @@ const addService = asyncHandler(async (req, res) => {
   }
 })
 
-module.exports = { addService, registerController, loginController }
+const updateData = asyncHandler(async (req, res) => {
+  try {
+    const { name, lat, long } = req.body
+    const report = await Reports.create({ name, location: { lat, long } })
+    findServices(lat, long)
+    res.status(201).json({
+      success: true,
+      name: report.name,
+      location: {
+        lat: report.location.lat,
+        lng: report.location.long,
+      },
+    })
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
+const findServices = async (lat, long) => {
+  const services = await Services.find({})
+  const nearby_services = []
+  services.forEach((service) => {
+    const lat2 = service.location.lat
+    const long2 = service.location.long
+    const calc = ((lat2 - lat) ^ 2) + ((long2 - long) ^ 2)
+    const distance = Math.sqrt(calc)
+
+    const entry = {
+      distance: distance,
+      id: service._id,
+    }
+    nearby_services.push(entry)
+  })
+  nearby_services.sort((a, b) => a.distance - b.distance)
+
+  console.log(nearby_services)
+  // console.log(services)
+}
+
+const simulation = asyncHandler(async (req, res) => {})
+
+module.exports = {
+  addService,
+  registerController,
+  loginController,
+  simulation,
+  updateData,
+}
