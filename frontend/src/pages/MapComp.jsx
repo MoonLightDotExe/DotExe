@@ -88,7 +88,7 @@ function MapComp({ head }) {
         lat: 19.1723,
         lng: 72.8457,
       },
-      label: '',
+      label: 'EPICENTRE',
     },
     {
       id: '',

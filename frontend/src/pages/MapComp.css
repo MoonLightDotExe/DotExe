@@ -1,4 +1,4 @@
-.google_map_container {
+.google_map_container1 {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -18,8 +18,17 @@
 }
 
 .google_desc {
-  text-align: center;
   font-size: 1.4rem;
   padding-top: 2.5rem;
+  padding-left: 27%;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .google_desc {
+    font-size: 1.4rem;
+    padding-top: 2.5rem;
+    padding-left: 0;
+    font-weight: bold;
+  }
 }

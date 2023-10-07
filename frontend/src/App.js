@@ -8,7 +8,7 @@ import './App.css'
 import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
 import MapComp from './pages/MapComp'
 import Login from './pages/Login/Login'
-import Register from './pages/Login/Register'
+import Register from './pages/Register/Register'
 import authContext from './context/authContext'
 // import { useContext } from 'react'
 
@@ -44,7 +44,7 @@ function App() {
             <Route
               path='/map'
               // Component={MapComp}
-              element={<MapComp />}
+              element={<MapComp head='Please Report any natural disasters!' />}
             />
 
             <Route
