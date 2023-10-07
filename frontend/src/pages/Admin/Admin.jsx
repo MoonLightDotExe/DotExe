@@ -161,7 +161,7 @@ function Admin() {
 
       <Button colorScheme='blue'>Button</Button>
 
-      <div>
+      <div >
         {data.map((data) => {
           return (
             <div className='use'>
