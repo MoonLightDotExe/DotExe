@@ -19,8 +19,10 @@
 
 .button {
   display: flex;
-  justify-content: end;
+  justify-content: center;
+  align-items: center;
   margin-right: 2vw;
+  margin-top: 5vh;
   padding: 1vh;
 }
 

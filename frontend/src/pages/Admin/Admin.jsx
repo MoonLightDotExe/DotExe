@@ -160,7 +160,7 @@ function Admin() {
       <div>
         {data.map((data) => {
           return (
-            <div className='admin_use'>
+            <div className='use'>
               <HCard
                 head={data.head}
                 addr={data.addr}

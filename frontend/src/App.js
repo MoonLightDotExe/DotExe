@@ -29,21 +29,35 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route
-            path='/admin'
-            Component={Admin}
-            element={<Admin />}
-          />
-          <Route
-            path='/ack'
-            Component={Acknowledgement}
-            element={<Acknowledgement />}
-          />
-          <Route
-            path='/map'
-            // Component={MapComp}
-            element={<MapComp />}
-          />
+          {/* {isAdmin && */}
+          <>
+            <Route
+              path='/admin'
+              Component={Admin}
+              element={<Admin />}
+            />
+            <Route
+              path='/ack'
+              Component={Acknowledgement}
+              element={<Acknowledgement />}
+            />
+            <Route
+              path='/map'
+              // Component={MapComp}
+              element={<MapComp />}
+            />
+
+            <Route
+              path='/register'
+              Component={Register}
+              element={<Register />}
+            />
+            <Route
+              path='/login'
+              element={<Login />}
+            />
+          </>
+          {/* } */}
         </Routes>
       </Router>
     </>
