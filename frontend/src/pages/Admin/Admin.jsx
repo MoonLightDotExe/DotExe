@@ -140,7 +140,7 @@ function Admin() {
       <MapComp/>
       <Button colorScheme='blue'>Button</Button>
 
-      <div>
+      <div >
         {data.map((data) => {
           return (
             <div className='admin_use'>
