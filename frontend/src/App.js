@@ -45,7 +45,7 @@ function App() {
             <Route
               path='/map'
               // Component={MapComp}
-              element={<MapComp />}
+              element={<MapComp head='Please Report any natural disasters!' />}
             />
 
             <Route
