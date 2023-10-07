@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import { Button } from '@chakra-ui/react'
 import authContext from '../context/authContext'
+// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import './MapComp.css'
 
@@ -54,6 +55,9 @@ function MapComp() {
       const longitude = position.coords.longitude
       setLocation({ latitude, longitude })
       test(location)
+      setTimeout(() => {
+        navigate('/ack')
+      }, 2000)
     }
   }
 

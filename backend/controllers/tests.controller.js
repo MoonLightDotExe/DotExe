@@ -105,8 +105,8 @@ const updateData = asyncHandler(async (req, res) => {
   try {
     const { name, lat, long } = req.body
     const report = await Reports.create({ name, location: { lat, long } })
-    findServices(lat, long)
-    // console.log()
+    const data = await findServices(lat, long)
+    console.log(data)
     res.status(201).json({
       success: true,
       name: report.name,
@@ -114,6 +114,7 @@ const updateData = asyncHandler(async (req, res) => {
         lat: report.location.lat,
         lng: report.location.long,
       },
+      data: data,
     })
   } catch (err) {
     throw new Error(err)
@@ -138,7 +139,15 @@ const findServices = async (lat, long) => {
   nearby_services.sort((a, b) => a.distance - b.distance)
 
   // return nearby_services
-  console.log(nearby_services)
+  // console.log(nearby_services)
+  const nearby_services_name = []
+  nearby_services.forEach(async (entry) => {
+    const id = entry.id
+    const serviceFound = await Services.findOne({ _id: id })
+    console.log(serviceFound.name)
+    nearby_services_name.push(serviceFound)
+  })
+  return nearby_services_name
 }
 
 const simulation = asyncHandler(async (req, res) => {})
