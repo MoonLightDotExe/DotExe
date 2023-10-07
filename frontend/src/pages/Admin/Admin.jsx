@@ -138,7 +138,9 @@ function Admin() {
       </div>
      
       <MapComp/>
-      <Button colorScheme='blue'>Button</Button>
+      <div className='button'>
+      <Button colorScheme='blue'>Report</Button>
+      </div>
 
       <div>
         {data.map((data) => {
