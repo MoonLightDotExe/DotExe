@@ -25,26 +25,25 @@ import {
 import { useToast } from '@chakra-ui/react'
 import MapComp from '../MapComp'
 
-
 const data = [
   {
-    head: 'head1',
-    addr: 'address1',
+    head: 'HCG Cancer Center',
+    addr: 'Holy Cross Road, I C Colony Off Borivali Dahisar, New Link Rd, Borivali West, Mumbai, Maharashtra 400092',
     img: 'img1',
   },
   {
-    head: 'head2',
-    addr: 'address2',
+    head: 'Police Chowki Kandivali',
+    addr: 'SV Road, Kandivali West, Mumbai - 400067 (Opposite Kandivali, Opposite Shatabdi Municipal Hospital, Near Parekh Nagar & Telephone Exchange)',
     img: 'img2',
   },
   {
-    head: 'head3',
-    addr: 'address3',
+    head: 'Atharva Hospital',
+    addr: '9, Shri Sevantilal Khandwala Marg, Kandivali, Nilkanth Nagar, Ganesh Nagar, Kandivali West, Mumbai, Maharashtra 400095',
     img: 'img3',
   },
   {
-    head: 'head4',
-    addr: 'address4',
+    head: 'Malwani Fire Brigade',
+    addr: ' Malad, Charkop Naka, Asmita Jyoti Housing Society, Malad West, Mumbai, Maharashtra 400095',
     img: 'img4',
   },
 ]
@@ -60,12 +59,11 @@ const center = {
 }
 
 function Admin() {
-
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4',
   })
 
-  const { data } = useContext(authContext)
+  // const { data } = useContext(authContext)
   const { activeReports, reports } = useContext(authContext)
 
   // console.log(markers)
@@ -79,7 +77,7 @@ function Admin() {
         description:
           'Please analyze and confirm the legitimacy of the emergency',
         status: 'error',
-        duration: 9000,
+        duration: 1000,
         isClosable: true,
         containerStyle: {
           width: '800px',
@@ -88,7 +86,7 @@ function Admin() {
       })
       activeReports()
       // console.log(reports)
-    }, 3000)
+    }, 1000)
   }, [])
   const [map, setMap] = useState(null)
 
@@ -163,18 +161,17 @@ function Admin() {
         </div>
       )}
 
-<div className='button'> <Button className='btn-report' colorScheme='blue'  >Report</Button></div>     
+      {/* <div className='button'> <Button className='btn-report' colorScheme='blue'  >Report</Button></div>      */}
 
       <div>
         {data.map((data) => {
           return (
             <div className='use'>
               <HCard
-                head={data.name}
-                addr={data.address}
+                head={data.head}
+                addr={data.addr}
                 img='https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2373&q=80'
               />
-              
             </div>
           )
         })}

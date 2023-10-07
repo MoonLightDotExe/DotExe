@@ -3,9 +3,25 @@ import './Acknowledgement.css'
 import HCard from '../../components/Card/HCard'
 import authContext from '../../context/authContext'
 import { useContext } from 'react'
+import { useToast } from '@chakra-ui/react'
 
 function Acknowledgement() {
   const { data } = useContext(authContext)
+  const toast = useToast()
+  setTimeout(() => {
+    toast({
+      position: 'top',
+      title: 'Emergency Alert.',
+      description: "We've detected an emergency near you!",
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+      containerStyle: {
+        width: '800px',
+        maxWidth: '100%',
+      },
+    })
+  }, 3000)
   return (
     <>
       <div className='ack_head'>Hang On Tight!</div>

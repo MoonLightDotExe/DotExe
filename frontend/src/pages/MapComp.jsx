@@ -36,21 +36,20 @@ function MapComp({ head }) {
 
   const toast = useToast()
 
-    setTimeout(() => {
-      toast({
-        position: 'top',
-        title: 'Account created.',
-        description: "We've created your account for you.",
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-        containerStyle: {
-          width: '800px',
-          maxWidth: '100%',
-        },
-      })
-    }, 3000)
-
+  // setTimeout(() => {
+  //   toast({
+  //     position: 'top',
+  //     title: 'Account created.',
+  //     description: "We've created your account for you.",
+  //     status: 'error',
+  //     duration: 9000,
+  //     isClosable: true,
+  //     containerStyle: {
+  //       width: '800px',
+  //       maxWidth: '100%',
+  //     },
+  //   })
+  // }, 3000)
 
   const [location, setLocation] = useState({ latitude: 0, longitude: 0 })
 

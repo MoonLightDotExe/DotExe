@@ -37,7 +37,7 @@ function HCard({ head, addr, img }) {
             variant='solid'
             colorScheme='blue'
           >
-            Accept
+            REQUEST
           </Button>
         </CardFooter>
       </Stack>

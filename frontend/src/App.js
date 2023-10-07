@@ -10,7 +10,7 @@ import MapComp from './pages/MapComp'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import authContext from './context/authContext'
-import MainContainer from './pages/MainContainer/MainContainer'
+// import MainContainer from './pages/MainContainer/MainContainer'
 // import { useContext } from 'react'
 
 function App() {
@@ -57,10 +57,10 @@ function App() {
               path='/login'
               element={<Login />}
             />
-            <Route
+            {/* <Route
               path='/'
               element={<MainContainer />}
-            />
+            /> */}
           </>
           {/* } */}
         </Routes>
