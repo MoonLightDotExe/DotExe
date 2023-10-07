@@ -177,6 +177,19 @@ const simulation = asyncHandler(async (req, res) => {
   }
 })
 
+const getActiveReports = asyncHandler(async (req, res) => {
+  try {
+    const live_reports = await Reports.find({})
+    console.log(live_reports)
+    res.status(200).json({
+      success: true,
+      reports: live_reports,
+    })
+  } catch (err) {
+    throw new Error(err)
+  }
+})
+
 module.exports = {
   addService,
   registerController,
@@ -184,4 +197,5 @@ module.exports = {
   simulation,
   updateData,
   simulation,
+  getActiveReports,
 }

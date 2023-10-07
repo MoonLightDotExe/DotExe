@@ -8,6 +8,14 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false)
   const [userData, setUserData] = useState()
   const [data, setData] = useState([])
+  const [reports, setReports] = useState({
+    id: '',
+    position: {
+      lat: -3.75,
+      lng: -38.52,
+    },
+    label: '',
+  })
 
   const registerUser = async (name, email, pass, address) => {
     if (!name || !email || !pass || !address) {
@@ -79,6 +87,33 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const activeReports = async () => {
+    try {
+      const response = await fetch(
+        'http://localhost:5000/api/test/active_projects'
+      )
+      const data = await response.json()
+      const reports_new = data.reports
+      let final = []
+      reports_new.forEach((report) => {
+        const newReport = {
+          id: '',
+          position: {
+            lat: report.location.lat,
+            lng: report.location.long,
+          },
+          label: '',
+        }
+        final.push(newReport)
+      })
+      console.log(final)
+      setReports(final)
+      console.log(reports)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <authContext.Provider
       value={{
@@ -90,6 +125,7 @@ export const AuthProvider = ({ children }) => {
         loginUser,
         updateLocationData,
         data,
+        activeReports,
       }}
     >
       {children}
