@@ -25,6 +25,7 @@ import {
 import { useToast } from '@chakra-ui/react'
 import MapComp from '../MapComp'
 
+
 const data = [
   {
     head: 'head1',
@@ -59,6 +60,7 @@ const center = {
 }
 
 function Admin() {
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4',
   })
@@ -155,9 +157,9 @@ function Admin() {
 
       {isVisible && <MapComp />}
 
-      <Button colorScheme='blue'>Button</Button>
+<div className='button'> <Button className='btn-report' colorScheme='blue'  >Report</Button></div>     
 
-      <div >
+      <div>
         {data.map((data) => {
           return (
             <div className='use'>
@@ -166,6 +168,7 @@ function Admin() {
                 addr={data.addr}
                 img={data.img}
               />
+              
             </div>
           )
         })}

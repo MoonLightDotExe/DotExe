@@ -4,6 +4,7 @@ import { Button } from '@chakra-ui/react'
 import authContext from '../context/authContext'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { useToast } from '@chakra-ui/react'
 import './MapComp.css'
 // import PropTypes from 'prop-types'
 
@@ -32,6 +33,24 @@ function MapComp({ head }) {
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4', // Replace this with your Google Maps API key
   })
+
+  const toast = useToast()
+
+    setTimeout(() => {
+      toast({
+        position: 'top',
+        title: 'Account created.',
+        description: "We've created your account for you.",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+        containerStyle: {
+          width: '800px',
+          maxWidth: '100%',
+        },
+      })
+    }, 3000)
+
 
   const [location, setLocation] = useState({ latitude: 0, longitude: 0 })
 

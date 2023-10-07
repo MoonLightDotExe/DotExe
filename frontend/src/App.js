@@ -8,8 +8,9 @@ import './App.css'
 import Acknowledgement from './pages/Acknowledgement/Acknowledgement'
 import MapComp from './pages/MapComp'
 import Login from './pages/Login/Login'
-import Register from './pages/Login/Register'
+import Register from './pages/Register/Register'
 import authContext from './context/authContext'
+import MainContainer from './pages/MainContainer/MainContainer'
 // import { useContext } from 'react'
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
             <Route
               path='/login'
               element={<Login />}
+            />
+            <Route
+              path='/'
+              element={<MainContainer />}
             />
           </>
           {/* } */}
