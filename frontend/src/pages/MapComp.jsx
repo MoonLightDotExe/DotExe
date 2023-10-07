@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import { Button } from '@chakra-ui/react'
+import authContext from '../context/authContext'
+import { useNavigate } from 'react-router-dom'
 import './MapComp.css'
 
 const containerStyle = {
@@ -29,7 +31,15 @@ function MapComp() {
     googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4', // Replace this with your Google Maps API key
   })
 
-  const [location, setLocation] = useState(null)
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 })
+
+  const { updateLocationData } = useContext(authContext)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    updateLocationData(location.latitude, location.longitude)
+  }, [location])
 
   const handleClick = () => {
     if (navigator.geolocation) {
@@ -43,8 +53,12 @@ function MapComp() {
       const latitude = position.coords.latitude
       const longitude = position.coords.longitude
       setLocation({ latitude, longitude })
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`)
+      test(location)
     }
+  }
+
+  const test = (e) => {
+    console.log(e)
   }
 
   const [map, setMap] = React.useState(null)

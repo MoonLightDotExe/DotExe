@@ -1,12 +1,16 @@
-import { response } from "express";
-import React from "react";
-import { createContext, useState } from "react";
+import React from 'react'
+import { createContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const authContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [userData, setUserData] = useState()
+  const [data, setData] = useState()
+
+  const navigate = useNavigate()
 
   const registerUser = async (name, email, pass, address) => {
     if (!name || !email || !pass || !address) {
@@ -47,22 +51,51 @@ export const AuthProvider = ({ children }) => {
     const data = await response.json()
     console.log(data)
     if (data.message === 'Invalid Credentials') {
-      setSuccess(true)
+      // setSuccess(true)
+    }
+  }
+
+  const updateLocationData = async (lat, long) => {
+    try {
+      setUserData({ name: 'Om Amonkar' })
+      console.log(lat + long)
+      const body = new URLSearchParams()
+      body.append('name', userData.name)
+      body.append('lat', lat)
+      body.append('long', long)
+
+      const response = await fetch(
+        `http://localhost:5000/api/test/updateData`,
+        {
+          method: 'POST',
+          body: body,
+        }
+      )
+
+      const data = await response.json()
+
+      navigate('/ack')
+
+      console.log(data)
+    } catch (err) {
+      console.log(err)
     }
   }
 
   return (
-    <authContext.Provider value={{
-      loggedIn,
-      setLoggedIn,
-      isAdmin,
-      setIsAdmin,
-      registerUser,
-      loginUser,
-    }
-    }>
+    <authContext.Provider
+      value={{
+        loggedIn,
+        setLoggedIn,
+        isAdmin,
+        setIsAdmin,
+        registerUser,
+        loginUser,
+        updateLocationData,
+      }}
+    >
       {children}
-    </authContext.Provider >
+    </authContext.Provider>
   )
 }
 
