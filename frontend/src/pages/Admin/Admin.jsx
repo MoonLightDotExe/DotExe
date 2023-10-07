@@ -1,11 +1,16 @@
-import React , {useState}from 'react'
+import React, { useState } from 'react'
 import './Admin.css'
 import { Chart } from 'react-google-charts'
 import authContext from '../../context/authContext.js'
 import HCard from '../../components/Card/HCard.jsx'
-import { GoogleMap, useJsApiLoader, Marker,useLoadScript  } from '@react-google-maps/api'
-import { useMemo } from "react";
-
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  useLoadScript,
+} from '@react-google-maps/api'
+import { useMemo, useEffect } from 'react'
+import { useContext } from 'react'
 
 import {
   Stat,
@@ -53,35 +58,34 @@ const center = {
   lng: 72.85568676781861,
 }
 
-const markers = [
-  //   { id: 1, position: { lat: -3.75, lng: -38.52 }, label: 'Marker 1' },
-  //   { id: 2, position: { lat: -3.74, lng: -38.525 }, label: 'Marker 2' },
-  {
-    id: 3,
-    position: { lat: 19.256994785551797, lng: 72.85568676781861 },
-    label: 'Marker 3',
-  },
-]
-
 function Admin() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey:'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4' ,
-  });
+    googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4',
+  })
+
+  const { activeReports, reports } = useContext(authContext)
+
+  // console.log(markers)
+
   const toast = useToast()
-  setTimeout(() => {
-    toast({
-      position: 'top',
-      title: 'Account created.',
-      description: "We've created your account for you.",
-      status: 'error',
-      duration: 9000,
-      isClosable: true,
-      containerStyle: {
-        width: '800px',
-        maxWidth: '100%',
-      },
-    })
-  }, 2000)
+  useEffect(() => {
+    setTimeout(() => {
+      toast({
+        position: 'top',
+        title: 'Account created.',
+        description: "We've created your account for you.",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+        containerStyle: {
+          width: '800px',
+          maxWidth: '100%',
+        },
+      })
+      activeReports()
+      // console.log(reports)
+    }, 3000)
+  }, [])
   const [map, setMap] = useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
@@ -94,6 +98,18 @@ function Admin() {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])
+
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 6000)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
+
   return (
     <div>
       <div className='navbar'></div>
@@ -136,14 +152,15 @@ function Admin() {
           </Stat>
         </StatGroup>
       </div>
-     
-      <MapComp/>
+
+      {isVisible && <MapComp />}
+
       <Button colorScheme='blue'>Button</Button>
 
       <div >
         {data.map((data) => {
           return (
-            <div className='admin_use'>
+            <div className='use'>
               <HCard
                 head={data.head}
                 addr={data.addr}

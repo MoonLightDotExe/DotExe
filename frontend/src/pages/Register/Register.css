@@ -1,0 +1,53 @@
+.reg-container {
+    background-image: url('https://images.unsplash.com/photo-1687639160028-95d24c15d04d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8&w=1000&q=80');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg-inner {
+    width: 30vw;
+    height: 85vh;
+    color: black;
+    background-color: #ffffff99;
+    border-radius: 3%;
+    padding: 1vw;
+}
+
+p,
+span,
+.reg-button {
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+span {
+    font-size: 1rem;
+}
+
+.reg-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .7rem;
+}
+
+.reg-text a {
+    color: #285e91;
+    text-decoration: underline;
+    padding-left: .5rem;
+}
+
+.reg-forgot {
+    display: flex;
+    justify-content: end;
+    color: #1a3b5a;
+    font-weight: 500;
+    padding: 0;
+}
