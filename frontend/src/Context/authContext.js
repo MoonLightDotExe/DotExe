@@ -1,5 +1,6 @@
 import React from 'react'
 import { createContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const authContext = createContext()
 
@@ -7,6 +8,9 @@ export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
   const [userData, setUserData] = useState()
+  const [data, setData] = useState()
+
+  const navigate = useNavigate()
 
   const registerUser = async (name, email, pass, address) => {
     if (!name || !email || !pass || !address) {
@@ -69,6 +73,8 @@ export const AuthProvider = ({ children }) => {
       )
 
       const data = await response.json()
+
+      navigate('/ack')
 
       console.log(data)
     } catch (err) {

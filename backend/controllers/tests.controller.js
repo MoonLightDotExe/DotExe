@@ -106,6 +106,7 @@ const updateData = asyncHandler(async (req, res) => {
     const { name, lat, long } = req.body
     const report = await Reports.create({ name, location: { lat, long } })
     findServices(lat, long)
+    // console.log()
     res.status(201).json({
       success: true,
       name: report.name,
@@ -136,8 +137,8 @@ const findServices = async (lat, long) => {
   })
   nearby_services.sort((a, b) => a.distance - b.distance)
 
+  // return nearby_services
   console.log(nearby_services)
-  // console.log(services)
 }
 
 const simulation = asyncHandler(async (req, res) => {})
