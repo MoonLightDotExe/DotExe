@@ -133,12 +133,14 @@ function Admin() {
         />
       </div>
 
-      <Button colorScheme='blue'>Button</Button>
+  <div className='button'>
+      <Button colorScheme='blue'>Report</Button>
+      </div>
 
       <div>
         {data.map((data) => {
           return (
-            <div className='admin_use'>
+            <div className='use'>
               <HCard
                 head={data.head}
                 addr={data.addr}
