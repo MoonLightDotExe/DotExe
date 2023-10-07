@@ -2,8 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import { Button } from '@chakra-ui/react'
 import authContext from '../context/authContext'
+// import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import './MapComp.css'
+// import PropTypes from 'prop-types'
+
 
 const containerStyle = {
   width: '75vw',
@@ -15,17 +18,17 @@ const center = {
   lng: 72.85568676781861,
 }
 
-const markers = [
-  //   { id: 1, position: { lat: -3.75, lng: -38.52 }, label: 'Marker 1' },
-  //   { id: 2, position: { lat: -3.74, lng: -38.525 }, label: 'Marker 2' },
-  {
-    id: 3,
-    position: { lat: 19.256994785551797, lng: 72.85568676781861 },
-    label: 'Marker 3',
-  },
-]
+// const markers = [
+//   //   { id: 1, position: { lat: -3.75, lng: -38.52 }, label: 'Marker 1' },
+//   //   { id: 2, position: { lat: -3.74, lng: -38.525 }, label: 'Marker 2' },
+//   {
+//     id: 3,
+//     position: { lat: 19.256994785551797, lng: 72.85568676781861 },
+//     label: 'Marker 3',
+//   },
+// ]
 
-function MapComp() {
+function MapComp({head,markers}) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4', // Replace this with your Google Maps API key
@@ -54,6 +57,9 @@ function MapComp() {
       const longitude = position.coords.longitude
       setLocation({ latitude, longitude })
       test(location)
+      setTimeout(() => {
+        navigate('/ack')
+      }, 2000)
     }
   }
 
@@ -77,7 +83,7 @@ function MapComp() {
   return isLoaded ? (
     <div className='google_container'>
       <div className='google_desc'>
-        Please Confirm Your Locality and hit Report for an emergency!
+        {head}
       </div>
       <div className='google_map_container'>
         <GoogleMap
@@ -113,3 +119,16 @@ function MapComp() {
 }
 
 export default MapComp
+
+MapComp.defaultProps = { 
+  markers: [{
+    id: "",
+    position: {
+      lat: -3.75,
+      lng: -38.52 
+    },
+    label: ""
+  }]
+
+} 
+  

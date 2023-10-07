@@ -1,8 +1,11 @@
-import React from 'react'
+import React , {useState}from 'react'
 import './Admin.css'
 import { Chart } from 'react-google-charts'
 import authContext from '../../context/authContext.js'
 import HCard from '../../components/Card/HCard.jsx'
+import { GoogleMap, useJsApiLoader, Marker,useLoadScript  } from '@react-google-maps/api'
+import { useMemo } from "react";
+
 
 import {
   Stat,
@@ -15,6 +18,7 @@ import {
   ButtonGroup,
 } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
+import MapComp from '../MapComp'
 
 const data = [
   {
@@ -39,35 +43,30 @@ const data = [
   },
 ]
 
-//charts
-
-// export const data = [
-//     ["Task", "Hours per Day"],
-//     ["Work", 11],
-//     ["Eat", 2],
-//     ["Commute", 2],
-//     ["Watch TV", 2],
-//     ["Sleep", 7],
-//   ];
-
-//   export const options = {
-//     title: "My Daily Activities",
-//   };
-
-//put in return
-{
-  /* <div className='chart'>
-    <Chart
-      chartType="PieChart"
-      data={data}
-      options={options}
-      width={"100%"}
-      height={"400px"}
-    />
-    </div> */
+const containerStyle = {
+  width: '75vw',
+  height: '70vh',
 }
 
+const center = {
+  lat: 19.256994785551797,
+  lng: 72.85568676781861,
+}
+
+const markers = [
+  //   { id: 1, position: { lat: -3.75, lng: -38.52 }, label: 'Marker 1' },
+  //   { id: 2, position: { lat: -3.74, lng: -38.525 }, label: 'Marker 2' },
+  {
+    id: 3,
+    position: { lat: 19.256994785551797, lng: 72.85568676781861 },
+    label: 'Marker 3',
+  },
+]
+
 function Admin() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey:'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4' ,
+  });
   const toast = useToast()
   setTimeout(() => {
     toast({
@@ -83,7 +82,18 @@ function Admin() {
       },
     })
   }, 2000)
+  const [map, setMap] = useState(null)
 
+  const onLoad = React.useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(center)
+    map.fitBounds(bounds)
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
   return (
     <div>
       <div className='navbar'></div>
@@ -126,16 +136,9 @@ function Admin() {
           </Stat>
         </StatGroup>
       </div>
-      <div className='center'>
-        <img
-          src='https://itjunkies.in/assets/images/blogs/map.webp'
-          alt=''
-        />
-      </div>
-
-  <div className='button'>
-      <Button colorScheme='blue'>Report</Button>
-      </div>
+     
+      <MapComp/>
+      <Button colorScheme='blue'>Button</Button>
 
       <div>
         {data.map((data) => {

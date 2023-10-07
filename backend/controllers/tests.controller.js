@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Services = require('../models/services.model')
 const Reports = require('../models/active_reports.model')
+const testSets = require('../models/tests.model')
 const Users = require('../models/users.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -105,8 +106,8 @@ const updateData = asyncHandler(async (req, res) => {
   try {
     const { name, lat, long } = req.body
     const report = await Reports.create({ name, location: { lat, long } })
-    findServices(lat, long)
-    // console.log()
+    const data = await findServices(lat, long)
+    console.log('data' + data)
     res.status(201).json({
       success: true,
       name: report.name,
@@ -114,6 +115,7 @@ const updateData = asyncHandler(async (req, res) => {
         lat: report.location.lat,
         lng: report.location.long,
       },
+      data: data,
     })
   } catch (err) {
     throw new Error(err)
@@ -122,7 +124,7 @@ const updateData = asyncHandler(async (req, res) => {
 
 const findServices = async (lat, long) => {
   const services = await Services.find({})
-  const nearby_services = []
+  let nearby_services = []
   services.forEach((service) => {
     const lat2 = service.location.lat
     const long2 = service.location.long
@@ -138,10 +140,42 @@ const findServices = async (lat, long) => {
   nearby_services.sort((a, b) => a.distance - b.distance)
 
   // return nearby_services
-  console.log(nearby_services)
+  // console.log(nearby_services)
+  // Use map to create an array of promises
+  let nearby_services_name = []
+  const servicePromises = nearby_services.map(async (entry) => {
+    const id = entry.id
+    const serviceFound = await Services.findOne({ _id: id })
+    const newService = {
+      name: serviceFound.name,
+      location: {
+        lat: serviceFound.location.lat,
+        long: serviceFound.location.long,
+      },
+      address: serviceFound.address,
+      type: serviceFound.type,
+    }
+    console.log(newService)
+    return newService
+  })
+
+  // Wait for all promises to resolve using Promise.all
+  nearby_services_name = await Promise.all(servicePromises)
+  console.log(nearby_services_name)
+  return nearby_services_name
 }
 
-const simulation = asyncHandler(async (req, res) => {})
+const simulation = asyncHandler(async (req, res) => {
+  try {
+    const volley = await testSets.find({})
+    console.log(volley)
+    res.status(200).json({
+      success: 'Volley Sent',
+    })
+  } catch (err) {
+    throw new Error(err)
+  }
+})
 
 module.exports = {
   addService,
@@ -149,4 +183,5 @@ module.exports = {
   loginController,
   simulation,
   updateData,
+  simulation,
 }
