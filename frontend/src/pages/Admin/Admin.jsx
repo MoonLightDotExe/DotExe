@@ -25,29 +25,6 @@ import {
 import { useToast } from '@chakra-ui/react'
 import MapComp from '../MapComp'
 
-const data = [
-  {
-    head: 'head1',
-    addr: 'address1',
-    img: 'img1',
-  },
-  {
-    head: 'head2',
-    addr: 'address2',
-    img: 'img2',
-  },
-  {
-    head: 'head3',
-    addr: 'address3',
-    img: 'img3',
-  },
-  {
-    head: 'head4',
-    addr: 'address4',
-    img: 'img4',
-  },
-]
-
 const containerStyle = {
   width: '75vw',
   height: '70vh',
@@ -63,6 +40,7 @@ function Admin() {
     googleMapsApiKey: 'AIzaSyCkIdp1ZbRPtNQ0vZuJgpx8pdlmTrKWts4',
   })
 
+  const { data } = useContext(authContext)
   const { activeReports, reports } = useContext(authContext)
 
   // console.log(markers)
@@ -72,8 +50,9 @@ function Admin() {
     setTimeout(() => {
       toast({
         position: 'top',
-        title: 'Account created.',
-        description: "We've created your account for you.",
+        title: 'Emergency Detected!',
+        description:
+          'Please analyze and confirm the legitimacy of the emergency',
         status: 'error',
         duration: 9000,
         isClosable: true,
@@ -161,13 +140,13 @@ function Admin() {
 
       <Button colorScheme='blue'>Button</Button>
 
-      <div >
+      <div>
         {data.map((data) => {
           return (
             <div className='use'>
               <HCard
-                head={data.head}
-                addr={data.addr}
+                head={data.name}
+                addr={data.address}
                 img='https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2373&q=80'
               />
             </div>
