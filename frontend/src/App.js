@@ -32,7 +32,7 @@ function App() {
           />
           <Route
             path='/home'
-            element={<Home/>}
+            element={<Home />}
           />
         </Routes>
       </Router>
